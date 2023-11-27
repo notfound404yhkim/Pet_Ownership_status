@@ -4,13 +4,12 @@ from app_eda import run_eda_app
 from app_ml import run_ml_app
 
 def main():
-    st.title('자동차 가격 예측 대시보드')
+    st.title('2021년 애완동물 보유가구 현황')
 
     menu = [ 'Home','EDA','ML']
 
 
     choice = st.sidebar.selectbox('메뉴',menu)
-
 
     if choice == menu[0]:
         run_home_app()

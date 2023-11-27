@@ -4,33 +4,87 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sb 
 
+from matplotlib import font_manager, rc
+font_path = "C:/Windows/Fonts/NGULIM.TTF"
+font = font_manager.FontProperties(fname=font_path).get_name()
+rc('font', family=font)
+
 
 def run_eda_app():
+    img_url = 'https://d2k6w3n3qf94c4.cloudfront.net/media/test/main_image/blind-dog-2-1024x683.jpg'
+    st.image(img_url)
+    
     st.subheader('데이터 분석')
 
-    st.text('전체 데이터 프레임 확인하기')
-    df = pd.read_csv('./data/Car_Purchasing_Data.csv')
+    st.subheader('전체 데이터 프레임 확인하기')
+    df = pd.read_csv('./data/2021_Owning_Pets.csv',encoding = 'euc-kr')
+    df2 = df[(df['거처의 종류별'] == '계' ) & (df['행정구역별(시도)'] != '전국' )] #전국 데이터 제외
+    df3 =df2.set_index('행정구역별(시도)') #지역을 인덱스화 
+    
     st.dataframe(df)
     
-    st.text('기초 통계 데이터 확인')
+    st.subheader('기초 통계 데이터 확인')
     if st.checkbox('통계 데이터보기'):
         st.dataframe(df.describe())
     else :
         st.text('')
 
-    st.text('최대 / 최소 데이터 확인하기')
+    st.subheader('최다 / 최소 데이터 확인')
+    column_list = df2.columns[5 : -1]
+    selected_column = st.selectbox('애완동물을 선택하세요.',column_list)
 
-    column_list = df.columns[4 : ]
-    selected_column = st.selectbox('컬럼을 선택하세요',column_list)
+    st.text(selected_column + '를 키우는 가구가 제일 적은 지역')
+    st.dataframe(df2.loc[ df2[selected_column] == df2[selected_column].min(),['행정구역별(시도)',selected_column ]])
+    st.text(selected_column + '를 키우는 가구가 제일 많은 지역')
+    st.dataframe(df2.loc[ df2[selected_column] == df2[selected_column].max(),['행정구역별(시도)',selected_column ]])
 
-    st.text(selected_column + '컬럼의 최소 값')
-    st.dataframe(df.loc[ df[selected_column] == df[selected_column].min() , ])
-    st.text(selected_column + '컬럼의 최대 값')
-    st.dataframe(df.loc[ df[selected_column] == df[selected_column].max() , ])
 
-    st.text(selected_column + '컬럼의 히스토그램')
-    fig1 = plt.figure()
-    df[selected_column].hist(bins = 20)
-    st.pyplot(fig1)
+##############
+    st.subheader('애완동물 별 데이터 확인하기')
+    selected_column2 = st.selectbox('애완동물을 선택하세요',column_list)
+    ylabel = selected_column2
+
+    fig = plt.figure(figsize=(8,5))
+    plt.title( '지역별 애완동물 데이터' )
+    plt.xticks(rotation = 45)
+    plt.xlabel('지역' )
+    plt.ylabel('가구')
+    plt.plot( df3[ylabel] )
+    st.pyplot(fig)
+
+##############
+
+    st.subheader('파이 형태로 비율 확인')
+    selected =  st.radio('정렬을 선택하세요',options=['반려동물 비율보기','반려동물 보유율보기'])
+    
+    # df의 petal_length 컬럼을 정렬하도록한다.
+    if selected == '반려동물 비율보기':
+        d_location = df2['행정구역별(시도)'].unique()
+        st.subheader('반려동물 비율보기')
+        selected_pet = str(st.selectbox('지역선택 선택', d_location))
+        df3= df3.loc[selected_pet,['개','고양이','기타']]
+        fig = plt.figure()
+        plt.pie(df3, labels = df3.index, autopct='%.1f',startangle=90,wedgeprops={'width':0.8})
+        plt.legend()
+        plt.title( selected_pet +' 애완동물 비율 ')
+        st.pyplot(fig)
+
+    elif selected =='반려동물 보유율보기':
+        d_location = df2['행정구역별(시도)'].unique()
+        st.subheader('반려동물보유가구 비율')
+        selected_pet = str(st.selectbox('지역선택 선택', d_location))
+        df3= df3.loc[selected_pet,['반려동물보유가구-계','반려동물미보유가구-계']]
+        fig = plt.figure()
+        plt.pie(df3, labels = df3.index, autopct='%.1f',startangle=90,wedgeprops={'width':0.8})
+        plt.legend()
+        plt.title( selected_pet +'반려동물보유가구 비율 ')
+        st.pyplot(fig)
+
+
+
+    
+
+
+
     
  
