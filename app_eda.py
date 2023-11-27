@@ -14,7 +14,7 @@ def run_eda_app():
     img_url = 'https://d2k6w3n3qf94c4.cloudfront.net/media/test/main_image/blind-dog-2-1024x683.jpg'
     st.image(img_url)
     
-    st.subheader('데이터 분석')
+    st.subheader('데이터 분석') 
 
     st.subheader('전체 데이터 프레임 확인하기')
     df = pd.read_csv('./data/2021_Owning_Pets.csv',encoding = 'euc-kr')
