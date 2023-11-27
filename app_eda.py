@@ -45,7 +45,7 @@ def run_eda_app():
     ylabel = selected_column2
 
     fig = plt.figure(figsize=(8,5))
-    plt.title( '지역별 애완동물 데이터' )
+    plt.title( '지역별 애완동물 보유 가구 데이터' )
     plt.xticks(rotation = 45)
     plt.xlabel('지역' )
     plt.ylabel('가구')
@@ -60,7 +60,7 @@ def run_eda_app():
     # df의 petal_length 컬럼을 정렬하도록한다.
     if selected == '반려동물 비율보기':
         d_location = df2['행정구역별(시도)'].unique()
-        st.subheader('반려동물 비율보기')
+        st.subheader('반려동물 비율')
         selected_pet = str(st.selectbox('지역선택 선택', d_location))
         df3= df3.loc[selected_pet,['개','고양이','기타']]
         fig = plt.figure()
@@ -80,6 +80,33 @@ def run_eda_app():
         plt.title( selected_pet +'반려동물보유가구 비율 ')
         st.pyplot(fig)
 
+
+###############################
+
+    st.subheader('상관 관계 보기')
+
+    if st.checkbox('상관 관계 데이터 보기'):
+            
+            selected_list = st.multiselect('두개의 컬럼을 선택하세요.' ,df.columns[:], max_selections=2)  
+
+            #두개일때만 차트 그리기 
+            if len(selected_list) == 2:
+                fig = plt.figure()
+                plt.scatter(data = df2, x= selected_list[0], y= selected_list[1])
+                plt.title( selected_list[0] + ' VS ' + selected_list[1])
+                plt.xlabel(selected_list[0])
+                plt.ylabel(selected_list[1])
+                st.pyplot(fig)
+
+                fig = plt.figure()
+                st.text('상관 계수')
+                st.dataframe(df2[selected_list].corr())
+                st.pyplot(fig)
+
+            else:
+                st.text('')
+        
+   
 
 
     
