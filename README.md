@@ -61,15 +61,13 @@ if my_choice == '소형견':
 
 ## 📌 Screen Shot
 # 데이터 분석 
-![1](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/47b98586-fba1-45e2-9321-a72df20ef428)
-![2](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/3e7abfe4-087b-4d10-a4dc-1be296f738ba)
+![1](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/e216425f-0a84-44ce-82d7-85e4f9abcc3e)
+![2](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/364899f4-0785-4b6d-9677-5ac6c0f42d9d)
 # 상관 계수 
-![3](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/9551170c-2270-4834-a4ff-e06e66cf039e)
+![3](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/42c1b47d-4ab3-4efa-b031-480ebfcf5f2c)
 # st.map 구현
-![4](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/67f23790-4125-430a-9a00-218a5eac33f9)
-![5](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/24b77da5-364c-4f02-9d2a-960401239174)
-
-
+![4](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/c86a3039-0286-4f0d-99d9-1b3bff1342ea)
+![5](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/dae2b812-eb46-4276-a197-c92362365ed4)
 
 ## 📌 URL
   - http://ec2-43-201-154-87.ap-northeast-2.compute.amazonaws.com:8502/
