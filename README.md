@@ -60,9 +60,12 @@ if my_choice == '소형견':
 ```
 
 ## 📌 Screen Shot
+# 데이터 분석 
 ![1](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/47b98586-fba1-45e2-9321-a72df20ef428)
 ![2](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/3e7abfe4-087b-4d10-a4dc-1be296f738ba)
+# 상관 계수 
 ![3](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/9551170c-2270-4834-a4ff-e06e66cf039e)
+# st.map 구현
 ![4](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/67f23790-4125-430a-9a00-218a5eac33f9)
 ![5](https://github.com/notfound404yhkim/Pet_Ownership_status/assets/151480575/24b77da5-364c-4f02-9d2a-960401239174)
 
