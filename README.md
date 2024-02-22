@@ -11,24 +11,57 @@
 
 ## 📌Code block
 
+# 파이 형태로 표시
+```
+selected_pet = str(st.selectbox('지역선택 선택', d_location))
+df3= df3.loc[selected_pet,['개','고양이','기타']]
+fig = plt.figure()
+plt.pie(df3, labels = df3.index, autopct='%.1f',startangle=90,wedgeprops={'width':0.8})
+plt.legend()
+plt.title( selected_pet +' 애완동물 비율 ')
+st.pyplot(fig)
+```
+
 # 선택한 컬럼의 상관계수
 ```
 fig = plt.figure()
-                plt.scatter(data = df2, x= selected_list[0], y= selected_list[1])
-                plt.title( selected_list[0] + ' VS ' + selected_list[1])
-                plt.xlabel(selected_list[0])
-                plt.ylabel(selected_list[1])
-                st.pyplot(fig)
+plt.scatter(data = df2, x= selected_list[0], y= selected_list[1])
+plt.title( selected_list[0] + ' VS ' + selected_list[1])
+plt.xlabel(selected_list[0])
+plt.ylabel(selected_list[1])
+st.pyplot(fig)
 
-                fig = plt.figure()
-                st.text('상관 계수')
-                st.dataframe(df2[selected_list].corr())
-                st.pyplot(fig)
+fig = plt.figure()
+st.text('상관 계수')
+st.dataframe(df2[selected_list].corr())
+st.pyplot(fig)
 ```
 
+# 위도 경도 지도표시
+```
+data = pd.read_csv('./data/mapinfo.csv')
+st.map(data)
+```
+
+# 애견 나이 사람나이로 계산
+```
+if my_choice == '소형견':
+  diff = (birth_year-2)*5
+  result = 24 + diff
+  print(result)
+  elif my_choice == '중형견':
+       diff = (birth_year-2)*6
+       result = 24 + diff
+       print(result)
+  elif my_choice == '대형견':
+       diff = (birth_year-2)*7
+       result = 24 + diff
+       print(result)
+```
+
+## 📌 Screen Shot
 
 
-  
 
 ## 📌 URL
   - http://ec2-43-201-154-87.ap-northeast-2.compute.amazonaws.com:8502/
